@@ -27,11 +27,16 @@ public class C206_CaseStudy {
 					UserAccount au = inputUserAccount();
 					C206_CaseStudy.addUserAccount(useraccountList, au);
 					System.out.println("New user added");
-				}else if(option == 2) {
-					C206_CaseStudy.viewAllUserAccount(useraccountList);
-				}else if (option == 3) {
 					
+				}else if(option1 == 2) {
+		
+					C206_CaseStudy.viewAllUserAccount(useraccountList);
+					
+				}else if (option1 == 3) {
+					C206_CaseStudy.deleteUserAccount(useraccountList);
 				}
+			}else if(option == 2) {
+				
 			}
 			
 			
@@ -65,7 +70,6 @@ public class C206_CaseStudy {
 		
 	}
 	//================================= Option 1 Add user account ====================================
-
 	public static UserAccount inputUserAccount() {
 		
 		String name = Helper.readString("Enter user name > ");
@@ -83,13 +87,14 @@ public class C206_CaseStudy {
 		
 	}
 	
-	//================================= Option 2 View user account ====================================
+	
+	//================================= Option 2 View all user====================================
 	public static String retrieveAllUserAccount(ArrayList<UserAccount> useraccountList) {
 		String output = "";
 
 		for (int i = 0; i < useraccountList.size(); i++) {
 
-			output += String.format("%-10s %-10s %-10s %-10s\n", useraccountList.get(i).getName(),
+			output += String.format("%-10s %-10s %-10s %13s\n", useraccountList.get(i).getName(),
 					useraccountList.get(i).getRole(), 
 					useraccountList.get(i).getEmail(), useraccountList.get(i).getPassword());
 		}
@@ -98,23 +103,27 @@ public class C206_CaseStudy {
 	
 	public static void viewAllUserAccount(ArrayList<UserAccount> useraccountList) {
 		C206_CaseStudy.setHeader("USER ACCOUNT LIST");
-		String output = String.format("%-10s %-10s %-10s %-10s\n", "NAME", "ROLE",
+		String output = String.format("%-10s %-10s %-10s %20s\n", "NAME", "ROLE",
 				"EMAIL", "PASSWORD");
 		 output += retrieveAllUserAccount(useraccountList);	
 		System.out.println(output);
 	}
+	
 	//================================= Option 3 Delete user based on email ====================================
-	public static boolean doReturnCamcorder(ArrayList<UserAccount> useraccountList, String mail) {
-		boolean isReturned = false;
-
-		for (int i = 0; i < useraccountList.size(); i++) {
-			if (mail.equalsIgnoreCase(useraccountList.get(i).getEmail()) == false) {
-				isReturned = true;
-				
-			}
-		}
-		return isReturned;
+	public static void deleteUserAccount(ArrayList<UserAccount> useraccountList) {
 		
+		C206_CaseStudy.viewAllUserAccount(useraccountList);
+		
+		
+		String email1 = Helper.readString("Enter user email > ");
+		if(email1.equals(null)) {
+			System.out.println("user deleted unsuccessfully");
+
+		}else {
+			useraccountList.remove(email1);
+			System.out.println("user deleted successfully");
+		}
+
 	}
 	
 }

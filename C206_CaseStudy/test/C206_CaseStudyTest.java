@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class C206_CaseStudyTest {
 	
-	private UserAccount au1;
-	private UserAccount au2;
+	private UserAccount ua1;
+	private UserAccount ua2;
 
 	
 	private ArrayList<UserAccount> useraccountList;
@@ -21,8 +21,8 @@ public class C206_CaseStudyTest {
 	@Before
 	public void setUp() throws Exception {
 		//prepare test data
-		au1 = new UserAccount("John", "buyer", "john123@gmail.com", "JoHn543!");
-		au2 = new UserAccount("May", "seller", "may123@gmail.com", "MaY543!");
+		ua1 = new UserAccount("John", "buyer", "john123@gmail.com", "JoHn543!");
+		ua2 = new UserAccount("May", "seller", "may123@gmail.com", "MaY543!");
 	}
 	
 	@Test
@@ -32,17 +32,17 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is valid UserAccount arraylist to add to", useraccountList);
 				
 		//Given an empty list, after adding 1 item, the size of the list is 1
-		C206_CaseStudy.addUserAccount(useraccountList, au1);		
+		C206_CaseStudy.addUserAccount(useraccountList, ua1);		
 		assertEquals("Test if that UserAccount arraylist size is 1?", 1, useraccountList.size());
 				
 		//The item just added is as same as the first item of the list
-		assertSame("Test that UserAccount is added same as 1st item of the list?", au1, useraccountList.get(0));
+		assertSame("Test that UserAccount is added same as 1st item of the list?", ua1, useraccountList.get(0));
 				
 		//Add another item. test The size of the list is 2?
-		C206_CaseStudy.addUserAccount(useraccountList, au2);
+		C206_CaseStudy.addUserAccount(useraccountList, ua2);
 
 		assertEquals("Test that UserAccount arraylist size is 2?", 2, useraccountList.size());
-		assertSame("Test that UserAccount is added same as 3rd item of the list?", au2 , useraccountList.get(2));
+		assertSame("Test that UserAccount is added same as 3rd item of the list?", ua2 , useraccountList.get(2));
 		
 		//fail("Not yet implemented"); 
 		assertTrue("C206_CaseStudy_SampleTest ",true);
@@ -57,11 +57,11 @@ public class C206_CaseStudyTest {
 		//test if the list of camcorders retrieved from the SourceCentre is empty
 		String allUserAccount= C206_CaseStudy.retrieveAllUserAccount(useraccountList);
 		String testOutput = "";
-		assertEquals("Check that viewAllUserAccount", testOutput, allUserAccount);
+		assertEquals("Check that viewAllUserAccountList", testOutput, allUserAccount);
 				
 		//Given an empty list, after adding 2 items, test if the size of the list is 2
-		C206_CaseStudy.addUserAccount(useraccountList, au1);
-		C206_CaseStudy.addUserAccount(useraccountList, au2);	
+		C206_CaseStudy.addUserAccount(useraccountList, ua1);
+		C206_CaseStudy.addUserAccount(useraccountList, ua2);	
 		assertEquals("Test if that Camcorder arraylist size is 2?", 2, useraccountList.size());
 		
 		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
@@ -79,8 +79,8 @@ public class C206_CaseStudyTest {
 
 	@After
 	public void tearDown() throws Exception {
-		au1 = null;
-		au2 = null;
+		ua1 = null;
+		ua2 = null;
 		useraccountList = null;
 
 	}
@@ -88,7 +88,7 @@ public class C206_CaseStudyTest {
 	@Test
 	public void c206_test() {
 		
-		//fail("Not yet implemented"); 
+		fail("Not yet implemented"); 
 		assertTrue("C206_CaseStudy_SampleTest ",true);
 	}
 
