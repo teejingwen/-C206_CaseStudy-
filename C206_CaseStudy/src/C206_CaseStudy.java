@@ -11,6 +11,13 @@ public class C206_CaseStudy {
 		useraccountList.add(new UserAccount("John", "buyer", "john123@gmail.com", "JoHn543!"));
 		useraccountList.add(new UserAccount("May", "seller", "may123@gmail.com", "MaY543!"));
 		
+//		================================= ArrayList for Category ========================================
+		
+		ArrayList<Category> categoryList = new ArrayList<Category>();
+		categoryList.add(new Category("Electronic Accessories"));
+		categoryList.add(new Category("Book"));
+		categoryList.add(new Category("CD"));
+		
 		int option = 0;
 		
 		while (option != 6) {
@@ -19,6 +26,8 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 			
 			int option1 = 0;
+			int option2 = 0;
+			
 			if(option == 1) {
 				
 				C206_CaseStudy.menu1();
@@ -27,7 +36,7 @@ public class C206_CaseStudy {
 				if (option1 == 1) {
 					UserAccount au = inputUserAccount();
 					C206_CaseStudy.addUserAccount(useraccountList, au);
-					System.out.println("New user added");
+					System.out.println("New user added!");
 					
 				}else if(option1 == 2) {
 		
@@ -35,14 +44,40 @@ public class C206_CaseStudy {
 					
 				}else if (option1 == 3) {
 					C206_CaseStudy.deleteUserAccount(useraccountList);
+				}else if (option1 == 4) {
+					System.out.println("Thank you for using our service!");
 				}
+				
+				
 			}else if(option == 2) {
+				
+				C206_CaseStudy.menu2();
+				option2 = Helper.readInt("Enter an option > ");
+				
+				if (option2 == 1) {
+					Category ca = inputCategory();
+					C206_CaseStudy.addCategory(categoryList, ca);
+					System.out.println("New category added!");
+					
+				}else if(option2 == 2) {
+					C206_CaseStudy.viewAllCategories(categoryList);
+					
+				}else if (option2 == 3) {
+					C206_CaseStudy.deleteCategory(categoryList);
+					
+				}else if (option2 == 4) {
+					System.out.println("Thank you for using our service!");
+				}
+				
 				
 			}
 			
 			
 		}
 	}
+	
+	
+//	==============================================================================================	
 	
 	public static void menu() {
 		C206_CaseStudy.setHeader("RP ONLINE AUCTION SYSTEM");
@@ -70,7 +105,17 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 		
 	}
-	//================================= Option 1 Add user account ====================================
+	
+	public static void menu2() {
+		System.out.println("1. Add category");
+		System.out.println("2. View all categories");
+		System.out.println("3. Delete category based on name");
+		System.out.println("4. Quit");
+		Helper.line(80, "-");
+		
+	}
+	
+	//================================= MENU 1 Option 1 Add user account ====================================
 	public static UserAccount inputUserAccount() {
 		
 		String name = Helper.readString("Enter user name > ");
@@ -89,7 +134,7 @@ public class C206_CaseStudy {
 	}
 	
 	
-	//================================= Option 2 View all user====================================
+	//================================= MENU 1 Option 2 View all user====================================
 	public static String retrieveAllUserAccount(ArrayList<UserAccount> useraccountList) {
 		String output = "";
 
@@ -110,31 +155,83 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 	
-	//================================= Option 3 Delete user based on email ====================================
+	//================================= MENU 1 Option 3 Delete user based on email ====================================
 	public static void deleteUserAccount(ArrayList<UserAccount> useraccountList) {
 		
 		C206_CaseStudy.viewAllUserAccount(useraccountList);
-		//String emailD = null;
 		
 		String emailD = Helper.readString("Enter user email to delete > ");
 		for(int i = 0; i < useraccountList.size() ; i++) {
-		//for(UserAccount ua : useraccountList) {
-			//useraccountList.removeIf(email -> email.equals(emailD));
+
 			if (useraccountList.get(i).getEmail().equals(emailD)) {
 				useraccountList.remove(i);
+				
 				}
-			//System.out.println(useraccountList);
+			
 		C206_CaseStudy.viewAllUserAccount(useraccountList);
 
-		}
-		 //namesList.removeIf( name -> name.equals("alex"));
-		//if(email1.equals(null)) {
-			//System.out.println("user deleted unsuccessfully");
+		   }
 
-		//}else {
-			//useraccountList.remove(email1);
-			//System.out.println("user deleted successfully");
 		}
+	//================================= MENU 2 Option 1 Add Category ====================================
+	
+	public static Category inputCategory() {
+		
+		String name = Helper.readString("Enter category name > ");
+
+		Category ca = new Category(name);
+		
+		return ca;	
+	}
+	public static void addCategory(ArrayList<Category> categoryList, Category ca) {
+		
+		categoryList.add(ca);
+		
+	}
+	
+	//================================= MENU 2 Option 2 View All Category ====================================
+	
+	public static String retrieveAllCategory(ArrayList<Category> categoryList) {
+		String output = "";
+
+		for (int i = 0; i < categoryList.size(); i++) {
+
+			output += String.format("%-30s\n", categoryList.get(i).getName());
+					
+		}
+		return output;
+	}
+	
+	public static void viewAllCategories(ArrayList<Category> categoryList) {
+		
+		C206_CaseStudy.setHeader("CATEGORY LIST");
+		//String output = String.format("%-30S\n", "NAME");
+		String output = retrieveAllCategory(categoryList);	
+		System.out.println(output);
+		
+	}
+	
+	//================================= MENU 2 Option 3 Delete Category ====================================
+	
+	public static void deleteCategory(ArrayList<Category> categoryList) {
+		
+		C206_CaseStudy.viewAllCategories(categoryList);
+		
+		String name = Helper.readString("Enter category name to delete > ");
+		
+		for(int i = 0; i < categoryList.size() ; i++) {
+
+			if (categoryList.get(i).getName().equals(name)) {
+				categoryList.remove(i);
+				
+				}
+			
+		C206_CaseStudy.viewAllCategories(categoryList);
+
+		   }
+
+		}
+	
 
 	}
 	
