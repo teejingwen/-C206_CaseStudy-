@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
+
 	public static void main(String[] args) {
 		
 //		================================= ArrayList for useraccount ====================================
@@ -113,17 +114,28 @@ public class C206_CaseStudy {
 	public static void deleteUserAccount(ArrayList<UserAccount> useraccountList) {
 		
 		C206_CaseStudy.viewAllUserAccount(useraccountList);
+		//String emailD = null;
 		
-		
-		String email1 = Helper.readString("Enter user email > ");
-		if(email1.equals(null)) {
-			System.out.println("user deleted unsuccessfully");
+		String emailD = Helper.readString("Enter user email to delete > ");
+		for(int i = 0; i < useraccountList.size() ; i++) {
+		//for(UserAccount ua : useraccountList) {
+			//useraccountList.removeIf(email -> email.equals(emailD));
+			if (useraccountList.get(i).getEmail().equals(emailD)) {
+				useraccountList.remove(i);
+				}
+			//System.out.println(useraccountList);
+		C206_CaseStudy.viewAllUserAccount(useraccountList);
 
-		}else {
-			useraccountList.remove(email1);
-			System.out.println("user deleted successfully");
+		}
+		 //namesList.removeIf( name -> name.equals("alex"));
+		//if(email1.equals(null)) {
+			//System.out.println("user deleted unsuccessfully");
+
+		//}else {
+			//useraccountList.remove(email1);
+			//System.out.println("user deleted successfully");
 		}
 
 	}
 	
-}
+//}
