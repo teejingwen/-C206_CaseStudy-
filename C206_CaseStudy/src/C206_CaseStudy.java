@@ -18,6 +18,11 @@ public class C206_CaseStudy {
 		categoryList.add(new Category("Book"));
 		categoryList.add(new Category("CD"));
 		
+//		================================= ArrayList for Item ========================================
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		itemList.add(new Item("Book", "Red Book", 10 , "03/08/2022", "12/08/2022", 1));
+		itemList.add(new Item("Pen", "Blue Pen", 1 , "05/08/2022", "20/08/2022", 1)); 
+		
 		int option = 0;
 		
 		while (option != 6) {
@@ -27,6 +32,7 @@ public class C206_CaseStudy {
 			
 			int option1 = 0;
 			int option2 = 0;
+			int option3 = 0;
 			
 			if(option == 1) {
 				
@@ -69,12 +75,33 @@ public class C206_CaseStudy {
 					System.out.println("Thank you for using our service!");
 				}
 				
+			} else if (option == 3) {
+				C206_CaseStudy.menu3();
+				option3 = Helper.readInt("Enter an option > ");
+				
+				if (option3 == 1) {
+					Item i = inputItem();
+					C206_CaseStudy.addItem(itemList, i);
+					System.out.println("New item added!");
+					
+				}else if(option3 == 2) {
+					C206_CaseStudy.viewAllItems(itemList);
+					
+				}else if (option3 == 3) {
+					C206_CaseStudy.deleteItem(itemList);
+					
+				}else if (option3 == 4) {
+					System.out.println("Thank you for using our service!");
+				}
+					
+				}
+				
 				
 			}
 			
 			
 		}
-	}
+	
 	
 	
 //	==============================================================================================	
@@ -113,6 +140,13 @@ public class C206_CaseStudy {
 		System.out.println("4. Quit");
 		Helper.line(80, "-");
 		
+	}
+	public static void menu3() {
+		System.out.println("1. Add item");
+		System.out.println("2. View all items");
+		System.out.println("3. Delete item based on name");
+		System.out.println("4. Quit");
+		Helper.line(80, "-");
 	}
 	
 	//================================= MENU 1 Option 1 Add user account ====================================
@@ -232,7 +266,78 @@ public class C206_CaseStudy {
 
 		}
 	
-
+	//================================= MENU 3 Option 1 Add Item   ====================================
+	public static Item inputItem () {
+		
+		C206_CaseStudy.setHeader("ITEM LIST");
+		String name = Helper.readString("Enter item name > ");
+		String description = Helper.readString("Enter description > ");
+		int minBidPrice = Helper.readInt("Enter minimum bid price > $");
+		String StartDate = Helper.readString("Enter start date > ");
+		String EndDate = Helper.readString("Enter end date > ");
+		int BidIncrement = Helper.readInt("Enter bid increment > ");
+		
+		Item i = new Item(name, description, minBidPrice, StartDate, EndDate, BidIncrement);
+		
+		return i;	
 	}
+	public static void addItem(ArrayList<Item> itemList, Item i) {
+		
+		itemList.add(i);
+		
+	}
+	//================================= MENU 3 Option 2 View All Item ====================================
+	
+	public static String retrieveAllItems(ArrayList<Item> itemList) {
+		String output = "";
+
+		for (int i = 0; i < itemList.size(); i++) {
+
+			output += String.format("%-10s %-10s %7d %17s %15s %10d\n", itemList.get(i).getName(),
+					itemList.get(i).getDescription(), 
+					itemList.get(i).getMinBidPrice(), itemList.get(i).getStartDate(), itemList.get(i).getEndDate(), 
+					itemList.get(i).getBidIncrement());
+					
+		}
+		return output;
+	}
+	
+	public static void viewAllItems(ArrayList<Item> itemList) {
+		
+		C206_CaseStudy.setHeader("ITEM LIST");
+		String output = String.format("%-10s %-10s %13s %12s %15s %20s\n", "NAME", "DESCRIPTION",
+				"MINBIDPRICE", "STARTDATE", "ENDDATE", "BID INCREMENT");
+		//String output = String.format("%-30S\n", "NAME");
+		output += retrieveAllItems(itemList);	
+		System.out.println(output);
+		
+	}
+	//================================= MENU 3 Option 3 Delete Item ====================================
+	
+	public static void deleteItem(ArrayList<Item> itemList) {
+		
+		C206_CaseStudy.viewAllItems(itemList);
+		
+		String name = Helper.readString("Enter item name to delete > ");
+		
+		for(int i = 0; i < itemList.size() ; i++) {
+
+			if (itemList.get(i).getName().equals(name)) {
+				itemList.remove(i);
+				
+				}
+			
+		C206_CaseStudy.viewAllItems(itemList);
+
+		   }
+
+		}
+		
+		
+		
+	}
+	
+
+	
 	
 //}
