@@ -20,12 +20,17 @@ public class C206_CaseStudy {
 //		================================= ArrayList for Item ========================================
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		itemList.add(new Item("Book", "Red Book", 10 , "03/08/2022", "12/08/2022", 1));
-		itemList.add(new Item("Pen", "Blue Pen", 1 , "05/08/2022", "20/08/2022", 1)); 
+		itemList.add(new Item("Pen", "Blue Pen",1 , "05/08/2022", "20/08/2022", 1)); 
 		
 //		================================= ArrayList for Bid ========================================
 		ArrayList<Bids> bidList = new ArrayList<Bids>();
 		bidList.add(new Bids("B101", "Book", "may123@gmail.com" , "john123@gmail.com", 10));
 		bidList.add(new Bids("B102", "Pen", "may123@gmail.com" , "john123@gmail.com", 1)); 
+		
+//		================================= ArrayList for Deals========================================
+		ArrayList<Deals> dealList = new ArrayList<Deals>(); 
+		dealList.add(new Deals("A001", "Book", "sam456@gmail.com" , "amy789@gmail.com", 100, "01/08/2022")); 
+		dealList.add(new Deals("A002", "Pen", "same456@gmail.com" , "amy789@gmail.com", 10, "01/08/2022"));  
 				
 		
 		int option = 0;
@@ -39,6 +44,7 @@ public class C206_CaseStudy {
 			int option2 = 0;
 			int option3 = 0;
 			int option4 = 0;
+			int option5 = 0;
 			
 			if(option == 1) {
 				
@@ -119,13 +125,34 @@ public class C206_CaseStudy {
 				
 				}else if (option4 == 4) {
 					System.out.println("Thank you for using our service!");
-				}
+				}	
+			
+			}else if (option == 5) {
 				
+				 C206_CaseStudy.menu5(); 
+				 option5 = Helper.readInt("Enter an option > "); 
+				 
+				 if (option5 == 1) { 
+					 Deals d = inputDeals(); 
+				 
+				     C206_CaseStudy.addDeals(dealList, d); 
+				     System.out.println("New deals added!"); 
+				     
+				    }else if(option5 == 2) { 
+				     C206_CaseStudy.viewAllDeals(dealList); 
+				     
+				    }else if (option5 == 3) { 
+				     C206_CaseStudy.deleteDeals(dealList); 
+				     
+				    }else if (option5 == 4) { 
+				     System.out.println("Thank you for using our service!"); 
 				
 			}
+			
 		}
 			
 		}
+	}
 
 //	==============================================================================================	
 
@@ -180,9 +207,15 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 
 	}
+	public static void menu5() { 
+		  System.out.println("1. Add deals"); 
+		  System.out.println("2. View all deals"); 
+		  System.out.println("3. Delete deals based on deal ID"); 
+		  System.out.println("4. Quit"); 
+		  Helper.line(80, "-"); 
+	} 
 
-	// ================================= MENU 1 Option 1 Add user account
-	// ====================================
+	// ================================= MENU 1 Option 1 Add user account ====================================
 	public static UserAccount inputUserAccount() {
 
 		String name = Helper.readString("Enter user name > ");
@@ -201,8 +234,7 @@ public class C206_CaseStudy {
 
 	}
 
-	// ================================= MENU 1 Option 2 View all
-	// user====================================
+	// ================================= MENU 1 Option 2 View all user====================================
 	public static String retrieveAllUserAccount(ArrayList<UserAccount> useraccountList) {
 		String output = "";
 
@@ -222,8 +254,7 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
-	// ================================= MENU 1 Option 3 Delete user based on email
-	// ====================================
+	// ================================= MENU 1 Option 3 Delete user based on email ====================================
 	public static void deleteUserAccount(ArrayList<UserAccount> useraccountList) {
 
 		C206_CaseStudy.viewAllUserAccount(useraccountList);
@@ -241,8 +272,7 @@ public class C206_CaseStudy {
 		}
 
 	}
-	// ================================= MENU 2 Option 1 Add Category
-	// ====================================
+	// ================================= MENU 2 Option 1 Add Category ====================================
 
 	public static Category inputCategory() {
 
@@ -259,8 +289,7 @@ public class C206_CaseStudy {
 
 	}
 
-	// ================================= MENU 2 Option 2 View All Category
-	// ====================================
+	// ================================= MENU 2 Option 2 View All Category ====================================
 
 	public static String retrieveAllCategory(ArrayList<Category> categoryList) {
 		String output = "";
@@ -282,8 +311,7 @@ public class C206_CaseStudy {
 
 	}
 
-	// ================================= MENU 2 Option 3 Delete Category
-	// ====================================
+	// ================================= MENU 2 Option 3 Delete Category ====================================
 
 	public static void deleteCategory(ArrayList<Category> categoryList) {
 
@@ -304,8 +332,7 @@ public class C206_CaseStudy {
 
 	}
 
-	// ================================= MENU 3 Option 1 Add Item
-	// ====================================
+	// ================================= MENU 3 Option 1 Add Item ====================================
 	public static Item inputItem() {
 
 		C206_CaseStudy.setHeader("ITEM LIST");
@@ -326,15 +353,15 @@ public class C206_CaseStudy {
 		itemList.add(i);
 
 	}
-	// ================================= MENU 3 Option 2 View All Item
-	// ====================================
+	
+	// ================================= MENU 3 Option 2 View All Item ====================================
 
 	public static String retrieveAllItems(ArrayList<Item> itemList) {
 		String output = "";
 
 		for (int i = 0; i < itemList.size(); i++) {
 
-			output += String.format("%-10s %-10s %7d %17s %15s %10d\n", itemList.get(i).getName(),
+			output += String.format("%-10s %-10s %7d %23s %15s %5d\n", itemList.get(i).getName(),
 					itemList.get(i).getDescription(), itemList.get(i).getMinBidPrice(), itemList.get(i).getStartDate(),
 					itemList.get(i).getEndDate(), itemList.get(i).getBidIncrement());
 
@@ -345,15 +372,15 @@ public class C206_CaseStudy {
 	public static void viewAllItems(ArrayList<Item> itemList) {
 
 		C206_CaseStudy.setHeader("ITEM LIST");
-		String output = String.format("%-10s %-10s %13s %12s %15s %20s\n", "NAME", "DESCRIPTION", "MINBIDPRICE",
+		String output = String.format("%-10s %-10s %15s %13s %13s %20s\n", "NAME", "DESCRIPTION", "MINBIDPRICE",
 				"STARTDATE", "ENDDATE", "BID INCREMENT");
 		// String output = String.format("%-30S\n", "NAME");
 		output += retrieveAllItems(itemList);
 		System.out.println(output);
 
 	}
-	// ================================= MENU 3 Option 3 Delete Item
-	// ====================================
+	
+	// ================================= MENU 3 Option 3 Delete Item ====================================
 
 	public static void deleteItem(ArrayList<Item> itemList) {
 
@@ -373,8 +400,8 @@ public class C206_CaseStudy {
 		}
 
 	}
-// ================================= MENU 4 Option 1 Add user account
-// ====================================
+	
+	// ================================= MENU 4 Option 1 Add bid ====================================
 	public static Bids inputBids() {
 		
 		String ID = Helper.readString("Enter Bid ID > ");
@@ -392,14 +419,13 @@ public class C206_CaseStudy {
 		bidList.add(b);
 
 	}
-//================================= MENU 1 Option 2 View all
-	// user====================================
+	//================================= MENU 4 Option 2 View all bid ====================================
 	public static String retrieveAllBids(ArrayList<Bids> bidList) {
 		String output = "";
 
 		for (int i = 0; i < bidList.size(); i++) {
 			
-			output += String.format("%-10s %-10s %-10s %-10s %-10d\n", bidList.get(i).getID(), bidList.get(i).getName(), bidList.get(i).getSmail(), bidList.get(i).getBmail(), bidList.get(i).getBp());
+			output += String.format("%-10s %-10s %-10s %20s %5d\n", bidList.get(i).getID(), bidList.get(i).getName(), bidList.get(i).getSmail(), bidList.get(i).getBmail(), bidList.get(i).getBp());
 
 		}
 		return output;
@@ -407,30 +433,85 @@ public class C206_CaseStudy {
 
 	public static void viewAllBids(ArrayList<Bids> bidList) {
 		C206_CaseStudy.setHeader("BID LIST");
-		String output = String.format("%-10s %-10s %-10s %-10s %-10s\n", "ID", "NAME", "SELLER EMAIL", "BUYER EMAIL", "BID PRICE");
+		String output = String.format("%-10s %-10s %-10s %18s %18s\n", "ID", "NAME", "SELLER EMAIL", "BUYER EMAIL", "BID PRICE");
 		output += retrieveAllBids(bidList);
 		System.out.println(output);
 	}
-// ================================= MENU 1 Option 3 Delete user based on email
-		// ====================================
-		public static void deleteBids(ArrayList<Bids> bidList) {
-
-			C206_CaseStudy.viewAllBids(bidList);
-
-			String DID = Helper.readString("Enter Bid ID to delete > ");
-			for (int i = 0; i < bidList.size(); i++) {
-
-				if (bidList.get(i).getID().equals(DID)) {
-					bidList.remove(i);
+	// ================================= MENU 4 Option 3 Delete bid based on bid id ====================================
+	public static void deleteBids(ArrayList<Bids> bidList) {
+		
+		C206_CaseStudy.viewAllBids(bidList);
+		String DID = Helper.readString("Enter Bid ID to delete > ");
+		
+		for (int i = 0; i < bidList.size(); i++) {
+			
+			if (bidList.get(i).getID().equals(DID)) {
+				bidList.remove(i);
 
 				}
-
-				C206_CaseStudy.viewAllBids(bidList);
+			C206_CaseStudy.viewAllBids(bidList);
 
 			}
 
 		}
-
+		
+		//===================== MENU 5 Option 1 Add deal ================================== 
+	public static Deals inputDeals() {
+		
+		String ID = Helper.readString("Enter Deal ID > "); 
+		String name = Helper.readString("Enter deal name > "); 
+		String smail = Helper.readString("Enter Seller Email > "); 
+		String bmail = Helper.readString("Enter Buyer Email > "); 
+		int tp = Helper.readInt("Enter transaction Price > "); 
+		String Closedate = Helper.readString("Enter the close date >"); 
+		    
+		    
+		Deals d = new Deals(ID, name, smail, bmail, tp, Closedate);  
+		     
+		return d; 
+	}
 	
-
+	public static void addDeals(ArrayList<Deals> dealList, Deals d) { 
+		 
+		dealList.add(d); 
+		
+		}
+	
+   
+	//================================= MENU 5 Option 2 View all deals ====================================			   
+	public static String retrieveAllDeals(ArrayList<Deals> dealList) { 
+		String output = ""; 
+				
+		for (int i = 0; i < dealList.size(); i++) { 
+				     
+			output += String.format("%-10s %-10s %-10s %20s %5d\n", dealList.get(i).getID(), dealList.get(i).getName(), dealList.get(i).getselleremail(), dealList.get(i).getBuyeremail(), dealList.get(i).getTprice()); 
+		} 
+		return output; 
+		} 
+				   
+				   
+	public static void viewAllDeals(ArrayList<Deals> dealList) { 
+		
+		C206_CaseStudy.setHeader("DEAL LIST"); 
+		String output = String.format("%-10s %-10s %-10s %18s %18s\n", "ID", "NAME", "SELLER EMAIL", "BUYER EMAIL", "BID PRICE"); 
+		output += retrieveAllDeals(dealList); 
+		System.out.println(output); 
+		} 
+		
+	//================================= MENU 5 Option 3 Delete deal on deal id ====================================
+	public static void deleteDeals(ArrayList<Deals> dealList) { 
+				 
+		C206_CaseStudy.viewAllDeals(dealList); 
+		String DID = Helper.readString("Enter Bid ID to delete > "); 
+		
+		for (int i = 0; i < dealList.size(); i++) { 
+				 
+			if (dealList.get(i).getID().equals(DID)) { 
+				dealList.remove(i);
+				} 
+			C206_CaseStudy.viewAllDeals(dealList); 
+				 
+		} 
+			  
+	}
 }
