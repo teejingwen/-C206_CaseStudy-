@@ -62,18 +62,18 @@ public class C206_CaseStudyTest {
 // ============================ USER ===============================
 	@Test
 	public void addUserAccount() {
-		// Item list is not null, so that can add a new item
+		// Item list is not null, so that can add a new user
 		
 		assertNotNull("Test if there is valid UserAccount arraylist to add to", useraccountList);
 				
-		//Given an empty list, after adding 1 item, the size of the list is 1
+		//Given an empty list, after adding 1 user, the size of the list is 1
 		C206_CaseStudy.addUserAccount(useraccountList, ua1);		
 		assertEquals("Test if that UserAccount arraylist size is 1?", 1, useraccountList.size());
 				
-		//The item just added is as same as the first item of the list
+		//The item just added is as same as the first user of the list
 		assertSame("Test that UserAccount is added same as 1st item of the list?", ua1, useraccountList.get(0));
 		
-		//Add another item. test The size of the list is 2?
+		//Add another user. test The size of the list is 2?
 		C206_CaseStudy.addUserAccount(useraccountList, ua1);
 		C206_CaseStudy.addUserAccount(useraccountList, ua2);
 		assertEquals("Test that UserAccoung arraylist size is 3?", 3, useraccountList.size());
@@ -83,20 +83,20 @@ public class C206_CaseStudyTest {
 	@Test
 	public void viewAllUserAccount() {
 		
-		// Test if Item list is not null but empty, so that can add a new item
+		// Test if useraccount list is not null but empty, so that can add a new user
 		assertNotNull("Test if there is valid UserAccount arraylist to add to", useraccountList);
 		
-		//test if the list of camcorders retrieved from the SourceCentre is empty
+		//test if the list of users retrieved from the case study is empty
 		String allUserAccount= C206_CaseStudy.retrieveAllUserAccount(useraccountList);
 		String testOutput = "";
 		assertEquals("Check that viewAllUserAccountList", testOutput, allUserAccount);
 				
-		//Given an empty list, after adding 2 items, test if the size of the list is 2
+		//Given an empty list, after adding 2 users, test if the size of the list is 2
 		C206_CaseStudy.addUserAccount(useraccountList, ua1);
 		C206_CaseStudy.addUserAccount(useraccountList, ua2);	
-		assertEquals("Test if that Camcorder arraylist size is 2?", 2, useraccountList.size());
+		assertEquals("Test if that UserAccount arraylist size is 2?", 2, useraccountList.size());
 		
-		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
+		//test if the expected output string same as the list of useraccount retrieved from the case study
 		allUserAccount= C206_CaseStudy.retrieveAllUserAccount(useraccountList);
 
 		testOutput = String.format("%-10s %-10s %-10s %13s\n", "John", "buyer",
@@ -115,7 +115,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addUserAccount(useraccountList, ua2);	
 		assertEquals("Test if that user arraylist size is 1?", 2, useraccountList.size());
 		
-		//The user added is as same as the first item of the list
+		//The user added is as same as the first user of the list
 		assertSame("Test that user is added same as 1st item of the list?", ua1, useraccountList.get(0));
 				
 		// user list is not null, so that can delete a new user
@@ -148,18 +148,18 @@ public class C206_CaseStudyTest {
 		// test if user list is not null but empty, so that can add a new item
 		assertNotNull("Test if there is valid Category arraylist to add to", categoryList);
 			
-		//test if the list of user retrieved from the SourceCentre is empty
+		//test if the list of user retrieved from the case study is empty
 		String allCategory = C206_CaseStudy.retrieveAllCategory(categoryList);
 		String testOutput = "";
 		assertEquals("Check view all categoryList", testOutput, allCategory);
 					
-		//Given an empty list, after adding 2 users, test if the size of the list is 2
+		//Given an empty list, after adding 2 item, test if the size of the list is 2
 		C206_CaseStudy.addCategory(categoryList, ca1);
 		C206_CaseStudy.addCategory(categoryList, ca2);
 		C206_CaseStudy.addCategory(categoryList, ca3);
 		assertEquals("Test if that Category arraylist size is 3?", 3, categoryList.size());
 			
-		//test if the expected output string same as the list of user retrieved from the SourceCentre
+		//test if the expected output string same as the list of item retrieved from the case study
 		allCategory = C206_CaseStudy.retrieveAllCategory(categoryList);
 			
 		testOutput += String.format("%-30s\n","Electronic Accessories");
@@ -208,7 +208,7 @@ public class C206_CaseStudyTest {
 		// test if item list is not null but empty, so that can add a new item
 		assertNotNull("Test if there is valid Item arraylist to add to", itemList);
 			
-		//test if the list of item retrieved from the SourceCentre is empty
+		//test if the list of item retrieved from the case study is empty
 		String allItem = C206_CaseStudy.retrieveAllItems(itemList);			
 		String testOutput = "";
 		assertEquals("Check view all itemList", testOutput, allItem);
@@ -217,7 +217,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addItem(itemList, i1);
 		assertEquals("Test if that item arraylist size is 2?", 1, itemList.size());
 						
-		//test if the expected output string same as the list of item retrieved from the SourceCentre
+		//test if the expected output string same as the list of item retrieved from the case study
 		allItem= C206_CaseStudy.retrieveAllItems(itemList);
 						
 		testOutput += String.format ("%-10s %-10s %7d %23s %15s %5d\n","Book", "Red Book", 10 , "03/08/2022", "12/08/2022", 1); 
@@ -274,7 +274,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addBids(bidList, b2);
 		assertEquals("Test if that bid arraylist size is 2?", 2, bidList.size());
 									
-		//test if the expected output string same as the list of bid retrieved from the SourceCentre
+		//test if the expected output string same as the list of bid retrieved from the case study
 		allBid= C206_CaseStudy.retrieveAllBids(bidList);
 									
 		testOutput += String.format ("%-10s %-10s %-10s %20s %5d\n", "B101", "Book", "may123@gmail.com" , "john123@gmail.com", 10); 
@@ -331,7 +331,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addDeals(dealList, d1);
 		assertEquals("Test if that item arraylist size is 2?", 1, dealList.size());
 										
-		//test if the expected output string same as the list of deal retrieved from the SourceCentre
+		//test if the expected output string same as the list of deal retrieved from the case study
 		allDeal= C206_CaseStudy.retrieveAllDeals(dealList);
 										
 		testOutput += String.format ("%-10s %-10s %-10s %20s %5d\n","A001", "Book", "sam456@gmail.com" , "amy789@gmail.com", 100, "01/08/2022"); 

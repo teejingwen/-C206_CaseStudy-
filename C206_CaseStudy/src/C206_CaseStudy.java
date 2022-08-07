@@ -268,6 +268,7 @@ public class C206_CaseStudy {
 			}
 
 			C206_CaseStudy.viewAllUserAccount(useraccountList);
+			
 
 		}
 
@@ -324,9 +325,12 @@ public class C206_CaseStudy {
 			if (categoryList.get(i).getName().equals(name)) {
 				categoryList.remove(i);
 
+			}else {
+				System.out.println("Category deleted unsuccessfully");
 			}
 
 			C206_CaseStudy.viewAllCategories(categoryList);
+			
 
 		}
 
@@ -393,9 +397,12 @@ public class C206_CaseStudy {
 			if (itemList.get(i).getName().equals(name)) {
 				itemList.remove(i);
 
+			}else {
+				System.out.println("Items deleted unsuccessfully");
 			}
 
 			C206_CaseStudy.viewAllItems(itemList);
+			
 
 		}
 
@@ -448,8 +455,11 @@ public class C206_CaseStudy {
 			if (bidList.get(i).getID().equals(DID)) {
 				bidList.remove(i);
 
+				}else {
+					System.out.println("Bids deleted unsuccessfully");
 				}
 			C206_CaseStudy.viewAllBids(bidList);
+			
 
 			}
 
@@ -508,8 +518,11 @@ public class C206_CaseStudy {
 				 
 			if (dealList.get(i).getID().equals(DID)) { 
 				dealList.remove(i);
-				} 
-			C206_CaseStudy.viewAllDeals(dealList); 
+				} else {
+					System.out.println("Deals deleted unsuccessfully");
+				}
+			C206_CaseStudy.viewAllDeals(dealList);
+			
 				 
 		} 
 			  
